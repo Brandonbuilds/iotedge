@@ -114,8 +114,6 @@ extern const char* certificate_info_get_chain(CERT_INFO_HANDLE handle);
 extern const char* certificate_info_get_issuer(CERT_INFO_HANDLE handle);
 extern const char* certificate_info_get_common_name(CERT_INFO_HANDLE handle);
 
-
-
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
