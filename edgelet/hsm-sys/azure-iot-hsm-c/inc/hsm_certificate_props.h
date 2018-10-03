@@ -30,8 +30,7 @@ typedef enum CERTIFICATE_TYPE_TAG
 
 typedef enum CERTIFICATE_SAN_TYPE_TAG
 {
-    EMAIL = 0,
-    EMAIL_COPY,
+    EMAIL = 0, //TBD discuss email:copy
     URI,
     DNS,
     IP,
@@ -258,7 +257,7 @@ extern const char* get_alias(CERT_PROPS_HANDLE handle);
 *
 * @param handle           The CERT_PROPS_HANDLE that was created by the cert_properties_create call
 * @param sans_list        A pointer to a list san entries
-* @param num_san_entries  The number of entries in the list
+* @param num_entries      The number of entries in the list
 *
 * @return                 On success 0 on.  Non-zero on failure
 */
@@ -272,12 +271,12 @@ extern int set_san_entries
 /**
 * @brief                Gets the alias type
 *
-* @param handle           The CERT_PROPS_HANDLE that was created by the cert_properties_create call
-* @param num_san_entries  The number of entries in the list will be returned
+* @param handle         The CERT_PROPS_HANDLE that was created by the cert_properties_create call
+* @param num_entries    The number of entries in the list will be returned
 *
 * @return               A pointer to a list san entries on success, NULL otherwise.
 */
-extern const char* get_san_entries(CERT_PROPS_HANDLE handle, size_t *num_entries);
+extern const CERTIFICATE_SAN* get_san_entries(CERT_PROPS_HANDLE handle, size_t *num_entries);
 
 #ifdef __cplusplus
 }

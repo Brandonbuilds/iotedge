@@ -99,9 +99,22 @@ extern PRIVATE_KEY_TYPE certificate_info_private_key_type(CERT_INFO_HANDLE handl
 */
 extern const char* certificate_info_get_leaf_certificate(CERT_INFO_HANDLE handle);
 
+/**
+* @brief             Retrieves the list of subject alternative names from the certificate
+*
+* @param handle      The handle created in certificate_info_create
+* @param num_entries The number of entries in the list will be returned
+*
+* @return            On success the start of the list
+*/
+extern const char* certificate_info_get_san_entries(CERT_INFO_HANDLE handle, size_t *num_entries);
+
+
 extern const char* certificate_info_get_chain(CERT_INFO_HANDLE handle);
 extern const char* certificate_info_get_issuer(CERT_INFO_HANDLE handle);
 extern const char* certificate_info_get_common_name(CERT_INFO_HANDLE handle);
+
+
 
 #ifdef __cplusplus
 }
