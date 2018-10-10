@@ -25,25 +25,8 @@ typedef enum CERTIFICATE_TYPE_TAG
     CERTIFICATE_TYPE_CA
 } CERTIFICATE_TYPE;
 
-// defines whether the HSM layer supports SAN entries
+/** defines whether the HSM layer supports SAN entries */
 #define HSM_FEATURE_CERTIFICATE_SAN
-
-typedef enum CERTIFICATE_SAN_TYPE_TAG
-{
-    EMAIL = 0, //TBD discuss email:copy
-    URI,
-    DNS,
-    IP,
-    RID,
-    DIR_NAME,
-    OTHER_NAME
-} CERTIFICATE_SAN_TYPE;
-
-typedef struct CERTIFICATE_SAN_TAG
-{
-    CERTIFICATE_SAN_TYPE type;
-    const char *value;
-} CERTIFICATE_SAN;
 
 /**
 * @brief    Creates a certificate property handle to be used in set properties
@@ -256,7 +239,7 @@ extern const char* get_alias(CERT_PROPS_HANDLE handle);
 * @brief                  Sets the certificate subject alternate names
 *
 * @param handle           The CERT_PROPS_HANDLE that was created by the cert_properties_create call
-* @param sans_list        A pointer to a list san entries
+* @param san_list         A pointer to a list of string containing san entries
 * @param num_entries      The number of entries in the list
 *
 * @return                 On success 0 on.  Non-zero on failure
@@ -264,7 +247,7 @@ extern const char* get_alias(CERT_PROPS_HANDLE handle);
 extern int set_san_entries
 (
     CERT_PROPS_HANDLE handle,
-    const CERTIFICATE_SAN* sans_list,
+    char* const san_list[],
     size_t num_san_entries
 );
 
@@ -274,9 +257,10 @@ extern int set_san_entries
 * @param handle         The CERT_PROPS_HANDLE that was created by the cert_properties_create call
 * @param num_entries    The number of entries in the list will be returned
 *
-* @return               A pointer to a list san entries on success, NULL otherwise.
+* @return               A pointer to a list NULL terminated strings containing the SAN entries,
+*                       NULL otherwise.
 */
-extern const CERTIFICATE_SAN* get_san_entries(CERT_PROPS_HANDLE handle, size_t *num_entries);
+extern const char** get_san_entries(CERT_PROPS_HANDLE handle, size_t *num_entries);
 
 #ifdef __cplusplus
 }
